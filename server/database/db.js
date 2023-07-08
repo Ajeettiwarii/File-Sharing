@@ -1,11 +1,12 @@
  import mongoose from 'mongoose'
+import * as dotenv from 'dotenv'
+dotenv.config();
+
  const DBConnection=async()=>{
     try{
-           await    mongoose.connect("mongodb://localhost:27017",{
-                dbName:"Server"
-              }).then(console.log("databse connected successfully"))
+           await mongoose.connect(process.env.CONNECTION_URL).then(()=>console.log("database connected successfully"))
     }catch(error){ 
-        console.error('Error while connecting with the database',error.message);
+        console.error('Error while connecting with the database',error);
 
     }
 }  
